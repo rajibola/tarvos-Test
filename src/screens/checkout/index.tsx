@@ -5,7 +5,7 @@ import {MediumText, RegularText} from '../../components/text';
 import {Data} from '../../utils/_Data';
 import {styles} from './styles';
 import {Button} from '../../components/button';
-import {AppContext} from '../../types/context';
+import {AppContext} from '../../context/context';
 import {CartCard} from '../../components/cartCard';
 
 const Checkout = () => {

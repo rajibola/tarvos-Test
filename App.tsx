@@ -13,7 +13,7 @@ import Checkout from './src/screens/checkout';
 import Details from './src/screens/details';
 import Home from './src/screens/home';
 import {createStackNavigator} from '@react-navigation/stack';
-import {AppProvider} from './src/types/context';
+import {AppProvider} from './src/context/context';
 
 const Stack = createStackNavigator();
 

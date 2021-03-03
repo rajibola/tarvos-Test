@@ -8,7 +8,7 @@ import colors from '../../components/colors';
 import {wp} from '../../utils/layout';
 import {Button} from '../../components/button';
 import {ListData} from '../../utils/_Data';
-import {AppContext} from '../../types/context';
+import {AppContext} from '../../context/context';
 
 type Props = {
   route: {

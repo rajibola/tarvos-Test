@@ -1,17 +1,9 @@
 import React, {createContext} from 'react';
+import {CartProps} from '../types/types.d';
 import {ListReducer, Dipatch} from './reducer';
 
 export type InitialStateType = {
-  CheckedEvent: {
-    name: string;
-    amount: number;
-    price: number;
-    size: string;
-    id: number;
-    image: any;
-    color: string;
-    total: number;
-  }[];
+  CheckedEvent: CartProps[];
 };
 
 export const initialState: InitialStateType = {

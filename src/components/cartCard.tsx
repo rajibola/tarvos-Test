@@ -1,43 +1,43 @@
-import React, {useContext, useState} from 'react';
-import {View, ImageSourcePropType, Image} from 'react-native';
+import React, {FC, useContext, useState} from 'react';
+import {View, Image} from 'react-native';
 import {CartStyles as styles} from './styles';
 import Plus from '../assets/icons/plus.svg';
 import Minus from '../assets/icons/minus.svg';
 import {wp} from '../utils/layout';
-import {AppContext} from '../types/context';
+import {AppContext} from '../context/context';
 import colors from './colors';
 import {MediumText, RegularText} from './text';
+import {CartProps} from '../types/types.d';
 
-type CartProps = {
-  name: string;
-  amount: number;
-  size?: string;
-  price: number;
-  image: ImageSourcePropType;
-  color: string;
-  id: number;
-  total: number;
-};
-
-export const CartCard = ({
-  name,
-  image,
-  amount,
-  size,
-  price,
-  color,
-  id,
-  total,
-}: CartProps) => {
+export const CartCard: FC<CartProps> = ({...props}) => {
+  const {name, amount, size, price, image, color, id, total} = props;
   const [count, setCount] = useState(1);
   const {dispatch, state} = useContext(AppContext);
   console.log(state.CheckedEvent);
-  if (!count) {
+
+  const reduce = () => {
     dispatch({
-      type: 'REMOVE_ITEM',
+      type: 'REDUCE_QUANTITY',
       payload: {id},
     });
-  }
+  };
+
+  const add = () => {
+    const payload = {
+      name: name,
+      amount: amount,
+      price: price,
+      size: size,
+      id: id,
+      image: image,
+      color: color,
+      total,
+    };
+    dispatch({
+      type: 'ADD_ITEM',
+      payload,
+    });
+  };
 
   const removeItem = () => {
     dispatch({
@@ -73,14 +73,14 @@ export const CartCard = ({
           height={wp(14)}
           width={wp(14)}
           fill={colors.black}
-          onPress={() => setCount(count + 1)}
+          onPress={add}
         />
-        <RegularText title={`${count}`} style={styles.controlText} />
+        <RegularText title={`${total}`} style={styles.controlText} />
         <Minus
           height={wp(14)}
           width={wp(14)}
           fill={colors.black}
-          onPress={() => setCount(count - 1)}
+          onPress={reduce}
         />
       </View>
     </View>

@@ -6,6 +6,7 @@ import Arrow from '../assets/icons/double-arrow.svg';
 import Smile from '../assets/icons/smile.svg';
 import Sun from '../assets/icons/sun.svg';
 import {wp} from './layout';
+import {CartProps} from '../types/types.d';
 
 export const ListData = [
   {
@@ -26,7 +27,7 @@ export const ListData = [
   },
 ];
 
-export const Data = [
+export const Data: CartProps[] = [
   {
     id: 1,
     name: 'UNEO',
@@ -35,7 +36,7 @@ export const Data = [
     image: mask.one,
     color: '#C3E5E4',
     size: 'M',
-    total: 1,
+    total: 0,
   },
   {
     id: 2,
@@ -45,7 +46,7 @@ export const Data = [
     image: mask.two,
     color: '#E6E6E6',
     size: 'M',
-    total: 1,
+    total: 0,
   },
   {
     id: 3,
@@ -55,7 +56,7 @@ export const Data = [
     image: mask.three,
     color: '#D1D4D8',
     size: 'M',
-    total: 1,
+    total: 0,
   },
   {
     id: 4,
@@ -65,7 +66,7 @@ export const Data = [
     image: mask.four,
     color: '#F7F0E4',
     size: 'M',
-    total: 1,
+    total: 0,
   },
   {
     id: 5,
@@ -75,6 +76,6 @@ export const Data = [
     image: mask.five,
     color: '#FCEAF2',
     size: 'M',
-    total: 1,
+    total: 0,
   },
 ];
