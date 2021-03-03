@@ -19,7 +19,10 @@ export const ListReducer = (state = initialState, action: Dipatch) => {
           itemToReduce.total -= 1;
           return {
             ...state,
-            CheckedEvent: [...state.CheckedEvent, itemToReduce],
+            CheckedEvent: [
+              ...state.CheckedEvent.filter((a) => a.id !== itemToReduce.id),
+              itemToReduce,
+            ],
           };
         }
       }
@@ -43,7 +46,10 @@ export const ListReducer = (state = initialState, action: Dipatch) => {
           itemToAdd.total += 1;
           return {
             ...state,
-            CheckedEvent: [...state.CheckedEvent, itemToAdd],
+            CheckedEvent: [
+              ...state.CheckedEvent.filter((a) => a.id !== itemToAdd.id),
+              itemToAdd,
+            ],
           };
         }
       }
