@@ -1,7 +1,6 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import {
   View,
-  ViewStyle,
   TouchableOpacity,
   TouchableOpacityProps,
   Image,
@@ -10,6 +9,8 @@ import {MediumText, RegularText} from './text';
 import {CardStyles as styles} from './styles';
 import {wp, hp} from '../utils/layout';
 import colors from './colors';
+import {useNavigation} from '@react-navigation/native';
+import Heart from '../assets/icons/heart.svg';
 
 const mask = require('../assets/images/mask1.png');
 
@@ -20,6 +21,9 @@ interface props extends TouchableOpacityProps {
   color?: string;
   onPress?: () => void;
   image?: any;
+  id?: number;
+  size?: string;
+  total: number;
 }
 
 export const ListCard: React.FC<props> = ({
@@ -28,13 +32,28 @@ export const ListCard: React.FC<props> = ({
   amount,
   image,
   color,
-  onPress,
+  id,
+  size,
+  total,
 }) => {
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={[styles.container, {backgroundColor: color}]}
       activeOpacity={0.7}
-      onPress={onPress}>
+      onPress={() =>
+        navigation.navigate('Details', {
+          image,
+          price,
+          amount,
+          color,
+          name,
+          id,
+          size,
+          total,
+        })
+      }>
       <Image source={image} style={styles.image} />
       <View style={styles.bottomContainer}>
         <View>
@@ -44,7 +63,7 @@ export const ListCard: React.FC<props> = ({
             <RegularText title={`unisex pack of ${amount}`} />
           </View>
         </View>
-        <View style={styles.icon}></View>
+        <Heart height={wp(20)} width={wp(20)} fill={colors.black} />
       </View>
     </TouchableOpacity>
   );

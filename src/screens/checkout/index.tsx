@@ -1,40 +1,48 @@
-import React from 'react';
-import {ScrollView, Text, View, ImageSourcePropType, Image} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {ScrollView, View} from 'react-native';
 import Header from '../../components/header';
-import {ListCard} from '../../components/list-card';
+import {MediumText, RegularText} from '../../components/text';
 import {Data} from '../../utils/_Data';
 import {styles} from './styles';
+import {Button} from '../../components/button';
+import {AppContext} from '../../types/context';
+import {CartCard} from '../../components/cartCard';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Header />
-        <ScrollView>
-          {Data.map((a, i) => (
-            <ListCard key={i} {...a} />
-          ))}
-        </ScrollView>
+const Checkout = () => {
+  const {dispatch, state} = useContext(AppContext);
+  console.log(state.CheckedEvent);
+
+  const total = state.CheckedEvent.reduce((a, b) => a + b.price, 0);
+
+  return (
+    <View style={styles.container}>
+      <Header leftText="shopping cart" />
+      <ScrollView>
+        {state.CheckedEvent.map((a, i) => (
+          <CartCard key={i} {...a} />
+        ))}
+      </ScrollView>
+      <View style={styles.bottomText}>
+        <RegularText title="cart details" style={styles.bottomTitle} />
+        <View style={styles.row}>
+          <RegularText title="total amount" style={styles.totalTitle} />
+          <MediumText title={`Rs ${total}`} style={styles.totalValue} />
+        </View>
+        <View style={styles.row}>
+          <RegularText title="discount" style={styles.totalTitle} />
+          <MediumText title="Rs 0" style={styles.totalValue} />
+        </View>
+
+        <View style={styles.line} />
+
+        <View style={styles.row}>
+          <RegularText title="final amount" style={styles.totalTitle} />
+          <MediumText title="Rs 0" style={styles.totalValue} />
+        </View>
       </View>
-    );
-  }
-}
-
-type CartProps = {
-  title: string;
-  icon: any;
-  image: ImageSourcePropType;
+      <Button title="checkout" />
+    </View>
+  );
 };
 
-const CartCard = ({icon, title, image}: CartProps) => (
-  <View style={styles.list}>
-    <View>
-      <Image source={image} style={styles.image} />
-      <View></View>
-    </View>
-
-    <View></View>
-  </View>
-);
-
-export default Home;
+export default Checkout;
