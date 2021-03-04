@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {ScrollView, Text, View, Image, ImageSourcePropType} from 'react-native';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {ScrollView, Text, View, Image, Animated} from 'react-native';
 import Header from '../../components/header';
 import {MediumText, RegularText} from '../../components/text';
 import {styles} from './styles';
@@ -9,24 +9,21 @@ import {wp} from '../../utils/layout';
 import {Button} from '../../components/button';
 import {ListData} from '../../utils/_Data';
 import {AppContext} from '../../context/context';
+import {DetailsProps} from '../../types/types.d';
 
-type Props = {
-  route: {
-    params: {
-      name: string;
-      price: number;
-      amount: number;
-      image: ImageSourcePropType;
-      color: string;
-      id: number;
-      size: string;
-      total: number;
-    };
-  };
-  navigation: any;
-};
+const Details = (props: DetailsProps) => {
+  const [oldSize, changeSize] = useState('');
+  const [showCircle, switchCircle] = useState(false);
+  const animValue = useRef(new Animated.Value(0)).current;
 
-const Details = (props: Props) => {
+  useEffect(() => {
+    Animated.timing(animValue, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+  }, [animValue]);
+
   const {dispatch} = useContext(AppContext);
   const handleAddToCart = async () => {
     const {params} = props?.route;
@@ -37,58 +34,153 @@ const Details = (props: Props) => {
     props.navigation.navigate('Checkout');
   };
 
+  const handleSize = (a: string) => {
+    changeSize(a);
+  };
+
   const {name, price, amount, image, color} = props?.route?.params;
   return (
     <View style={styles.container}>
       <Header back />
       <ScrollView>
         <View>
-          <View style={[styles.topView, {backgroundColor: color}]}>
-            <Image source={image} style={styles.image} />
-            <View style={styles.bottomContainer}>
-              <View>
-                <MediumText title={name} style={styles.title} />
-                <View style={styles.newRow}>
-                  <RegularText title={`N ${price}`} style={styles.price} />
-                  <RegularText title={`unisex pack of ${amount}`} />
-                </View>
-              </View>
-              <Heart height={wp(20)} width={wp(20)} fill={colors.black} />
-            </View>
-          </View>
-
-          <View style={styles.row}>
+          {topContainer()}
+          <Animated.View
+            style={[
+              styles.row,
+              {
+                opacity: animValue,
+                transform: [
+                  {
+                    translateY: animValue.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [20, 1],
+                    }),
+                  },
+                ],
+              },
+            ]}>
             {['s', 'm', 'l'].map((a, i) => (
-              <View style={styles.size} key={i}>
-                <RegularText title={a} style={styles.sizeText} />
+              <View
+                style={[
+                  styles.size,
+                  oldSize === a && {
+                    backgroundColor: colors.black,
+                  },
+                ]}
+                key={i}>
+                <RegularText
+                  title={a}
+                  style={[
+                    styles.sizeText,
+                    oldSize === a && {
+                      color: colors.white,
+                    },
+                  ]}
+                />
               </View>
             ))}
-          </View>
+          </Animated.View>
         </View>
 
-        <View style={styles.bottomView}>
-          <Text style={styles.details}>
-            100% Original Products {'\n'}This item is not returnable. Items like
-            inner-wear, personal care, make-up, socks and certain accessories do
-            not come under our return policy.
-            <Text style={styles.more}> Read More.</Text>
-          </Text>
-
-          <View style={styles.spec}>
-            <RegularText title="spec" style={styles.specText} />
-          </View>
-
-          <View style={styles.listContainer}>
-            {ListData.map((a, i) => (
-              <List {...a} key={i} />
-            ))}
-          </View>
-        </View>
+        {bottomContainer()}
       </ScrollView>
 
-      <Button title="add to cart" onPress={() => handleAddToCart()} />
+      <Button
+        title={oldSize ? 'continue' : 'add to cart'}
+        onPress={() => {
+          if (oldSize) {
+            handleAddToCart();
+          } else {
+            switchCircle(true);
+          }
+        }}
+      />
+
+      {showCircle && circleContainer()}
     </View>
   );
+
+  function circleContainer() {
+    return (
+      <View style={styles.circle}>
+        <MediumText title="select size" style={styles.circleHeader} />
+        <View style={styles.rowItems}>
+          {['s', 'm', 'l'].map((a, i) => (
+            <View style={styles.size} key={i}>
+              <RegularText
+                title={a}
+                style={styles.sizeText}
+                onPress={() => {
+                  handleSize(a);
+                  switchCircle(false);
+                }}
+              />
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.textContainer}>
+          <RegularText title="size chart" style={styles.circleText} />
+        </View>
+      </View>
+    );
+  }
+
+  function bottomContainer() {
+    return (
+      <Animated.View
+        style={[
+          styles.bottomView,
+          {
+            opacity: animValue,
+            transform: [
+              {
+                translateY: animValue.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [20, 1],
+                }),
+              },
+            ],
+          },
+        ]}>
+        <Text style={styles.details}>
+          100% Original Products {'\n'}This item is not returnable. Items like
+          inner-wear, personal care, make-up, socks and certain accessories do
+          not come under our return policy.
+          <Text style={styles.more}> Read More.</Text>
+        </Text>
+
+        <View style={styles.spec}>
+          <RegularText title="spec" style={styles.specText} />
+        </View>
+
+        <View style={styles.listContainer}>
+          {ListData.map((a, i) => (
+            <List {...a} key={i} />
+          ))}
+        </View>
+      </Animated.View>
+    );
+  }
+
+  function topContainer() {
+    return (
+      <View style={[styles.topView, {backgroundColor: color}]}>
+        <Image source={image} style={styles.image} />
+        <View style={styles.bottomContainer}>
+          <View>
+            <MediumText title={name} style={styles.title} />
+            <View style={styles.newRow}>
+              <RegularText title={`N ${price}`} style={styles.price} />
+              <RegularText title={`unisex pack of ${amount}`} />
+            </View>
+          </View>
+          <Heart height={wp(20)} width={wp(20)} fill={colors.black} />
+        </View>
+      </View>
+    );
+  }
 };
 
 export default Details;

@@ -11,3 +11,19 @@ export type CartProps = {
   id: number;
   total: number;
 };
+
+export type DetailsProps = {
+  route: {
+    params: {
+      name: string;
+      price: number;
+      amount: number;
+      image: ImageSourcePropType;
+      color: string;
+      id: number;
+      size: string;
+      total: number;
+    };
+  };
+  navigation: any;
+};

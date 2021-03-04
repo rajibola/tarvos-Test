@@ -11,9 +11,9 @@ import {CartProps} from '../types/types.d';
 
 export const CartCard: FC<CartProps> = ({...props}) => {
   const {name, amount, size, price, image, color, id, total} = props;
-  const [count, setCount] = useState(1);
   const {dispatch, state} = useContext(AppContext);
   console.log(state.CheckedEvent);
+  const hitSlop = {top: 20, bottom: 20, left: 50, right: 50};
 
   const reduce = () => {
     dispatch({
@@ -74,6 +74,7 @@ export const CartCard: FC<CartProps> = ({...props}) => {
           width={wp(14)}
           fill={colors.black}
           onPress={add}
+          hitSlop={hitSlop}
         />
         <RegularText title={`${total}`} style={styles.controlText} />
         <Minus
@@ -81,6 +82,7 @@ export const CartCard: FC<CartProps> = ({...props}) => {
           width={wp(14)}
           fill={colors.black}
           onPress={reduce}
+          hitSlop={hitSlop}
         />
       </View>
     </View>

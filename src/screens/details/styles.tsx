@@ -1,4 +1,4 @@
-import {StyleSheet, ViewStyle, ImageStyle, TextStyle} from 'react-native';
+import {StyleSheet, ViewStyle, ImageStyle, TextStyle, View} from 'react-native';
 import colors from '../../components/colors';
 import {hp, wp} from '../../utils/layout';
 
@@ -22,9 +22,52 @@ interface Styles {
   title: TextStyle;
   price: TextStyle;
   newRow: TextStyle;
+  circle: ViewStyle;
+  circleHeader: TextStyle;
+  rowItems: ViewStyle;
+  circleText: TextStyle;
+  textContainer: ViewStyle;
 }
 
 export const styles = StyleSheet.create<Styles>({
+  textContainer: {
+    flexWrap: 'wrap',
+  },
+  circleText: {
+    color: colors.white,
+    fontSize: hp(16),
+    lineHeight: hp(19),
+    textTransform: 'capitalize',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.grey,
+    paddingBottom: wp(6.5),
+  },
+  rowItems: {
+    flexDirection: 'row',
+    marginTop: wp(18),
+    marginBottom: wp(36),
+  },
+  circleHeader: {
+    color: colors.white,
+    fontSize: hp(20),
+    lineHeight: hp(24),
+    textTransform: 'capitalize',
+  },
+  circle: {
+    width: wp(437),
+    height: wp(437),
+    position: 'absolute',
+    right: -wp(100),
+    bottom: -wp(437 - 297),
+    backgroundColor: colors.black,
+    borderRadius: wp(437),
+    zIndex: 100,
+    paddingHorizontal: wp(98),
+    paddingVertical: wp(83),
+
+    flexShrink: 0,
+    flexWrap: 'wrap',
+  },
   newRow: {
     flexDirection: 'row',
     alignItems: 'center',
