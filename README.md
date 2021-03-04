@@ -5,7 +5,7 @@
 1. Fork or Clone the repo, then set it up:
 
 ```
-$ cd decagon-challenge
+$ cd tarvos-Test
 $ yarn install
 ```
 
