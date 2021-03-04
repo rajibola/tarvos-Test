@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {wp, hp} from '../utils/layout';
+import {Platform, StyleSheet} from 'react-native';
+import {wp, hp, paddingTopiOS, getStatusBarHeight} from '../utils/layout';
 import colors from './colors';
 
 export const ListStyles = StyleSheet.create({
@@ -231,6 +231,7 @@ export const HeaderStyles = StyleSheet.create({
     borderRadius: hp(2),
   },
   container: {
+    marginTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
     backgroundColor: 'white',
     height: hp(60 + 18 + 15),
     flexDirection: 'row',
