@@ -1,6 +1,35 @@
-import {StyleSheet, ViewStyle, TextStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {wp, hp} from '../utils/layout';
 import colors from './colors';
+
+export const ListStyles = StyleSheet.create({
+  listText: {
+    fontSize: hp(16),
+    lineHeight: hp(21),
+    marginLeft: wp(25),
+    marginBottom: hp(32),
+  },
+  list: {
+    flexDirection: 'row',
+  },
+});
+
+export const ListItemStyles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: hp(13),
+  },
+  totalValue: {
+    fontSize: hp(20),
+    lineHeight: hp(24),
+  },
+  totalTitle: {
+    fontSize: hp(16),
+    lineHeight: hp(19),
+    textTransform: 'capitalize',
+  },
+});
 
 export const CartStyles = StyleSheet.create({
   controlText: {

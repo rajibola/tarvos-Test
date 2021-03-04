@@ -1,11 +1,9 @@
 import {StyleSheet, ViewStyle} from 'react-native';
 import colors from '../../components/colors';
 
-interface Styles {
+type Styles = {
   container: ViewStyle;
-  // icon: ImageStyle;
-  // label: TextStyle;
-}
+};
 
 export const styles = StyleSheet.create<Styles>({
   container: {

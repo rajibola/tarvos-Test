@@ -10,6 +10,7 @@ import {Button} from '../../components/button';
 import {ListData} from '../../utils/_Data';
 import {AppContext} from '../../context/context';
 import {DetailsProps} from '../../types/types.d';
+import {List} from '../../components/list';
 
 const Details = (props: DetailsProps) => {
   const [oldSize, changeSize] = useState('');
@@ -43,46 +44,7 @@ const Details = (props: DetailsProps) => {
     <View style={styles.container}>
       <Header back />
       <ScrollView>
-        <View>
-          {topContainer()}
-          <Animated.View
-            style={[
-              styles.row,
-              {
-                opacity: animValue,
-                transform: [
-                  {
-                    translateY: animValue.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [20, 1],
-                    }),
-                  },
-                ],
-              },
-            ]}>
-            {['s', 'm', 'l'].map((a, i) => (
-              <View
-                style={[
-                  styles.size,
-                  oldSize === a && {
-                    backgroundColor: colors.black,
-                  },
-                ]}
-                key={i}>
-                <RegularText
-                  title={a}
-                  style={[
-                    styles.sizeText,
-                    oldSize === a && {
-                      color: colors.white,
-                    },
-                  ]}
-                />
-              </View>
-            ))}
-          </Animated.View>
-        </View>
-
+        {topContainer()}
         {bottomContainer()}
       </ScrollView>
 
@@ -144,6 +106,29 @@ const Details = (props: DetailsProps) => {
             ],
           },
         ]}>
+        <View style={styles.row}>
+          {['s', 'm', 'l'].map((a, i) => (
+            <View
+              style={[
+                styles.size,
+                oldSize === a && {
+                  backgroundColor: colors.black,
+                },
+              ]}
+              key={i}>
+              <RegularText
+                title={a}
+                style={[
+                  styles.sizeText,
+                  oldSize === a && {
+                    color: colors.white,
+                  },
+                ]}
+              />
+            </View>
+          ))}
+        </View>
+
         <Text style={styles.details}>
           100% Original Products {'\n'}This item is not returnable. Items like
           inner-wear, personal care, make-up, socks and certain accessories do
@@ -184,15 +169,3 @@ const Details = (props: DetailsProps) => {
 };
 
 export default Details;
-
-type ListProps = {
-  title: string;
-  icon: any;
-};
-
-const List = ({icon, title}: ListProps) => (
-  <View style={styles.list}>
-    {icon}
-    <RegularText title={title} style={styles.listText} />
-  </View>
-);

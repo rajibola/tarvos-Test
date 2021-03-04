@@ -1,13 +1,5 @@
-import {CartProps} from '../types/types.d';
+import {Dipatch} from '../types/types.d';
 import {initialState} from './context';
-
-export type Dipatch =
-  | {type: 'REMOVE_ITEM'; payload: {id: number}}
-  | {type: 'REDUCE_QUANTITY'; payload: {id: number}}
-  | {
-      type: 'ADD_ITEM';
-      payload: CartProps;
-    };
 
 export const ListReducer = (state = initialState, action: Dipatch) => {
   switch (action.type) {

@@ -8,15 +8,9 @@ import {wp} from '../utils/layout';
 import colors from './colors';
 import {RegularText} from './text';
 import {useNavigation} from '@react-navigation/native';
+import {HeaderProps} from '../types/types.d';
 
-type Props = {
-  back?: boolean;
-  leftText?: string;
-  navigation?: any;
-  onPress?: () => void;
-};
-
-function Header(props: Props) {
+export const Header: React.FC<HeaderProps> = (props) => {
   const navigation = useNavigation();
   const {back, leftText} = props;
   return (
@@ -53,12 +47,17 @@ function Header(props: Props) {
           </View>
           <View style={styles.IconContainer}>
             <SearchIcon height={wp(24)} width={wp(24)} fill={colors.black} />
-            <ShopIcon height={wp(24)} width={wp(24)} fill={colors.black} />
+            <ShopIcon
+              height={wp(24)}
+              width={wp(24)}
+              fill={colors.black}
+              onPress={() => navigation.navigate('Checkout')}
+            />
           </View>
         </>
       )}
     </View>
   );
-}
+};
 
 export default Header;

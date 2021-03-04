@@ -1,33 +1,7 @@
-import {StyleSheet, ViewStyle, ImageStyle, TextStyle, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import colors from '../../components/colors';
 import {hp, wp} from '../../utils/layout';
-
-interface Styles {
-  container: ViewStyle;
-  image: ImageStyle;
-  topView: ViewStyle;
-  sizeText: TextStyle;
-  size: ViewStyle;
-  row: ViewStyle;
-  bottomView: ViewStyle;
-  details: TextStyle;
-  more: TextStyle;
-  spec: ViewStyle;
-  specText: TextStyle;
-  list: ViewStyle;
-  listText: TextStyle;
-  listContainer: ViewStyle;
-  bottomContainer: ViewStyle;
-  icon: ImageStyle;
-  title: TextStyle;
-  price: TextStyle;
-  newRow: TextStyle;
-  circle: ViewStyle;
-  circleHeader: TextStyle;
-  rowItems: ViewStyle;
-  circleText: TextStyle;
-  textContainer: ViewStyle;
-}
+import {DetailsStyleProps as Styles} from '../../types/types.d';
 
 export const styles = StyleSheet.create<Styles>({
   textContainer: {
@@ -94,15 +68,6 @@ export const styles = StyleSheet.create<Styles>({
   listContainer: {
     paddingBottom: hp(35),
   },
-  listText: {
-    fontSize: hp(16),
-    lineHeight: hp(21),
-    marginLeft: wp(25),
-    marginBottom: hp(32),
-  },
-  list: {
-    flexDirection: 'row',
-  },
   specText: {
     fontSize: hp(16),
   },
@@ -134,7 +99,7 @@ export const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     marginLeft: wp(36),
     position: 'absolute',
-    bottom: -wp(19),
+    top: -wp(19),
     zIndex: 5,
   },
   sizeText: {

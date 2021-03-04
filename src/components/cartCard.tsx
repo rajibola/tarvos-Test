@@ -23,16 +23,7 @@ export const CartCard: FC<CartProps> = ({...props}) => {
   };
 
   const add = () => {
-    const payload = {
-      name: name,
-      amount: amount,
-      price: price,
-      size: size,
-      id: id,
-      image: image,
-      color: color,
-      total,
-    };
+    const payload = {...props};
     dispatch({
       type: 'ADD_ITEM',
       payload,

@@ -1,29 +1,7 @@
-import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import colors from '../../components/colors';
 import {hp, wp} from '../../utils/layout';
-
-interface Styles {
-  container: ViewStyle;
-  cartContainer: ViewStyle;
-  leftView: ViewStyle;
-  imageContainer: ViewStyle;
-  image: ImageStyle;
-  title: TextStyle;
-  price: TextStyle;
-  amount?: TextStyle;
-  size?: TextStyle;
-  remove: TextStyle;
-  priceRow: ViewStyle;
-  textContainer?: ViewStyle;
-  control: ViewStyle;
-  bottomText: ViewStyle;
-  bottomTitle: TextStyle;
-  totalTitle: TextStyle;
-  totalValue: TextStyle;
-  row: ViewStyle;
-  line: ViewStyle;
-  controlText: TextStyle;
-}
+import {CheckoutProps as Styles} from '../../types/types.d';
 
 export const styles = StyleSheet.create<Styles>({
   controlText: {
@@ -35,20 +13,6 @@ export const styles = StyleSheet.create<Styles>({
     backgroundColor: '#00000033',
     marginBottom: hp(27),
     marginTop: hp(14),
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: hp(13),
-  },
-  totalValue: {
-    fontSize: hp(20),
-    lineHeight: hp(24),
-  },
-  totalTitle: {
-    fontSize: hp(16),
-    lineHeight: hp(19),
-    textTransform: 'capitalize',
   },
   bottomTitle: {
     fontSize: hp(16),
