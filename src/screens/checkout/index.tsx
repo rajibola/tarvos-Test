@@ -21,7 +21,10 @@ const Checkout: React.FC = () => {
 
   const {state} = useContext(AppContext);
 
-  const total = state.CheckedEvent.reduce((a, b) => a + b.price * b.total, 0);
+  const total = state.CheckedEvent.sort((a, b) => a.id - b.id).reduce(
+    (a, b) => a + b.price * b.total,
+    0,
+  );
 
   return (
     <View style={styles.container}>
