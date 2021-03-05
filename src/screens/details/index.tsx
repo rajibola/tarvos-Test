@@ -12,6 +12,8 @@ import {AppContext} from '../../context/context';
 import {DetailsProps} from '../../types/types.d';
 import {List} from '../../components/list';
 
+const hitSlop = {top: 20, bottom: 20, left: 20, right: 20};
+
 const Details = (props: DetailsProps) => {
   const [oldSize, changeSize] = useState('');
   const [showCircle, switchCircle] = useState(false);
@@ -30,7 +32,7 @@ const Details = (props: DetailsProps) => {
     const {params} = props?.route;
     await dispatch({
       type: 'ADD_ITEM',
-      payload: {...params},
+      payload: {...params, size: oldSize.toUpperCase()},
     });
     props.navigation.navigate('Checkout');
   };
@@ -69,7 +71,7 @@ const Details = (props: DetailsProps) => {
         <MediumText title="select size" style={styles.circleHeader} />
         <View style={styles.rowItems}>
           {['s', 'm', 'l'].map((a, i) => (
-            <View style={styles.size} key={i}>
+            <View style={styles.size} key={i} hitSlop={hitSlop}>
               <RegularText
                 title={a}
                 style={styles.sizeText}

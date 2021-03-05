@@ -12,7 +12,6 @@ import {CartProps} from '../types/types.d';
 export const CartCard: FC<CartProps> = ({...props}) => {
   const {name, amount, size, price, image, color, id, total} = props;
   const {dispatch, state} = useContext(AppContext);
-  console.log(state.CheckedEvent);
   const hitSlop = {top: 20, bottom: 20, left: 50, right: 50};
 
   const reduce = () => {
