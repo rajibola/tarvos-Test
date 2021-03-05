@@ -1,4 +1,7 @@
-# tarvos-Test
+# tarvos-Test 
+
+![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.svg?v=101)
+
 
 ## Preview
 
