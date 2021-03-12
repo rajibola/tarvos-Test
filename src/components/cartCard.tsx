@@ -1,16 +1,16 @@
-import React, {FC, useContext, useState} from 'react';
-import {View, Image} from 'react-native';
-import {CartStyles as styles} from './styles';
-import Plus from '../assets/icons/plus.svg';
+import React, {FC, useContext} from 'react';
+import {Image, View} from 'react-native';
+import {colors, MediumText, RegularText} from '.';
 import Minus from '../assets/icons/minus.svg';
-import {wp} from '../utils/layout';
+import Plus from '../assets/icons/plus.svg';
 import {AppContext} from '../context/context';
 import {CartProps} from '../types/types.d';
-import {colors, MediumText, RegularText} from '.';
+import {wp} from '../utils/layout';
+import {CartStyles as styles} from './styles';
 
 export const CartCard: FC<CartProps> = ({...props}) => {
   const {name, amount, size, price, image, color, id, total} = props;
-  const {dispatch, state} = useContext(AppContext);
+  const {dispatch} = useContext(AppContext);
   const hitSlop = {top: wp(14), bottom: wp(14), left: wp(14), right: wp(14)};
 
   const reduce = () => {
