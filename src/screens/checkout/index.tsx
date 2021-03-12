@@ -1,12 +1,14 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {Animated, ScrollView, View} from 'react-native';
-import Header from '../../components/header';
-import {RegularText} from '../../components/text';
-import {styles} from './styles';
-import {Button} from '../../components/button';
+import {
+  Button,
+  CartCard,
+  Header,
+  ListItem,
+  RegularText,
+} from '../../components';
 import {AppContext} from '../../context/context';
-import {CartCard} from '../../components/cartCard';
-import {ListItem} from '../../components/list-item';
+import {styles} from './styles';
 
 const Checkout: React.FC = () => {
   const animValue = useRef(new Animated.Value(0)).current;

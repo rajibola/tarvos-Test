@@ -1,16 +1,20 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {ScrollView, Text, View, Image, Animated} from 'react-native';
-import Header from '../../components/header';
-import {MediumText, RegularText} from '../../components/text';
-import {styles} from './styles';
+import {Animated, Image, ScrollView, Text, View} from 'react-native';
+import {SharedElement} from 'react-navigation-shared-element';
 import Heart from '../../assets/icons/heart.svg';
-import colors from '../../components/colors';
-import {wp} from '../../utils/layout';
-import {Button} from '../../components/button';
-import {ListData} from '../../utils/_Data';
+import {
+  Button,
+  colors,
+  Header,
+  List,
+  MediumText,
+  RegularText,
+} from '../../components';
 import {AppContext} from '../../context/context';
 import {DetailsProps} from '../../types/types.d';
-import {List} from '../../components/list';
+import {wp} from '../../utils/layout';
+import {ListData} from '../../utils/_Data';
+import {styles} from './styles';
 
 const hitSlop = {top: 20, bottom: 20, left: 20, right: 20};
 
@@ -41,7 +45,7 @@ const Details = (props: DetailsProps) => {
     changeSize(a);
   };
 
-  const {name, price, amount, image, color} = props?.route?.params;
+  const {name, price, amount, image, color, id} = props?.route?.params;
   return (
     <View style={styles.container}>
       <Header back />
@@ -154,7 +158,9 @@ const Details = (props: DetailsProps) => {
   function topContainer() {
     return (
       <View style={[styles.topView, {backgroundColor: color}]}>
-        <Image source={image} style={styles.image} />
+        <SharedElement id={`item.${id}.icon`}>
+          <Image source={image} style={styles.image} />
+        </SharedElement>
         <View style={styles.bottomContainer}>
           <View>
             <MediumText title={name} style={styles.title} />

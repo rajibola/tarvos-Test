@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../components/colors';
 import {hp, wp} from '../../utils/layout';
 import {DetailsStyleProps as Styles} from '../../types/types.d';
+import {colors} from '../../components';
 
 export const styles = StyleSheet.create<Styles>({
   textContainer: {

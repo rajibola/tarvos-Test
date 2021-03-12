@@ -8,23 +8,54 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import Checkout from './src/screens/checkout';
 import Details from './src/screens/details';
 import Home from './src/screens/home';
-import {createStackNavigator} from '@react-navigation/stack';
 import {AppProvider} from './src/context/context';
+import {
+  createSharedElementStackNavigator,
+  SharedElementsComponentConfig,
+} from 'react-navigation-shared-element';
+import {NavigationParamList} from './src/types/types.d';
+import {StackNavigationOptions} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
-const Stack = createStackNavigator();
+const SharedConfig: SharedElementsComponentConfig = (route) => {
+  const {id} = route.params;
+  return [
+    {
+      id: `item.${id}.icon`,
+      animation: 'move',
+    },
+  ];
+};
 
-const App: () => React$Node = () => {
+const options: StackNavigationOptions = {
+  headerShown: false,
+  cardStyleInterpolator: ({current: {progress}}) => {
+    return {
+      cardStyle: {
+        opacity: progress,
+      },
+    };
+  },
+  gestureEnabled: false,
+};
+
+const Stack = createSharedElementStackNavigator<NavigationParamList>();
+
+const App = () => {
   return (
     <AppProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={options}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Checkout" component={Checkout} />
-          <Stack.Screen name="Details" component={Details} />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            sharedElementsConfig={SharedConfig}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>

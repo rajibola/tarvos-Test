@@ -5,10 +5,10 @@ import SearchIcon from '../assets/icons/search.svg';
 import ShopIcon from '../assets/icons/shopping-cart.svg';
 import Back from '../assets/icons/back-arrow.svg';
 import {wp} from '../utils/layout';
-import colors from './colors';
-import {RegularText} from './text';
+
 import {useNavigation} from '@react-navigation/native';
 import {HeaderProps} from '../types/types.d';
+import {colors, RegularText} from '.';
 
 export const Header: React.FC<HeaderProps> = (props) => {
   const navigation = useNavigation();

@@ -1,7 +1,6 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import Header from '../../components/header';
-import {ListCard} from '../../components/list-card';
+import {ScrollView, View} from 'react-native';
+import {Header, ListCard} from '../../components';
 import {Data} from '../../utils/_Data';
 import {styles} from './styles';
 

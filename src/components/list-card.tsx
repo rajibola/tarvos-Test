@@ -1,12 +1,12 @@
-import React from 'react';
-import {View, TouchableOpacity, Image} from 'react-native';
-import {MediumText, RegularText} from './text';
-import {CardStyles as styles} from './styles';
-import {wp} from '../utils/layout';
-import colors from './colors';
 import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {Image, TouchableOpacity, View} from 'react-native';
+import {SharedElement} from 'react-navigation-shared-element';
+import {colors, MediumText, RegularText} from '.';
 import Heart from '../assets/icons/heart.svg';
 import {ListCardProps} from '../types/types.d';
+import {wp} from '../utils/layout';
+import {CardStyles as styles} from './styles';
 
 export const ListCard: React.FC<ListCardProps> = ({...props}) => {
   const navigation = useNavigation();
@@ -20,7 +20,9 @@ export const ListCard: React.FC<ListCardProps> = ({...props}) => {
           ...props,
         })
       }>
-      <Image source={props.image} style={styles.image} />
+      <SharedElement id={`item.${props.id}.icon`}>
+        <Image source={props.image} style={styles.image} />
+      </SharedElement>
       <View style={styles.bottomContainer}>
         <View>
           <MediumText title={props.name} style={styles.title} />

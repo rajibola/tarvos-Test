@@ -5,9 +5,8 @@ import Plus from '../assets/icons/plus.svg';
 import Minus from '../assets/icons/minus.svg';
 import {wp} from '../utils/layout';
 import {AppContext} from '../context/context';
-import colors from './colors';
-import {MediumText, RegularText} from './text';
 import {CartProps} from '../types/types.d';
+import {colors, MediumText, RegularText} from '.';
 
 export const CartCard: FC<CartProps> = ({...props}) => {
   const {name, amount, size, price, image, color, id, total} = props;

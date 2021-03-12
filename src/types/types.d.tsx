@@ -6,6 +6,12 @@ import {
   ViewStyle,
 } from 'react-native';
 
+export type NavigationParamList = {
+  Home: undefined;
+  Details: {item: ListCardProps};
+  Checkout: undefined;
+};
+
 export type TextComponentProps = {
   title?: string;
   style?: TextStyle | {};

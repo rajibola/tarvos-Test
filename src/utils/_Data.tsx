@@ -1,12 +1,12 @@
 import React from 'react';
-import {mask} from '../assets/images';
-import colors from '../components/colors';
-import Shield from '../assets/icons/shield.svg';
 import Arrow from '../assets/icons/double-arrow.svg';
+import Shield from '../assets/icons/shield.svg';
 import Smile from '../assets/icons/smile.svg';
 import Sun from '../assets/icons/sun.svg';
-import {wp} from './layout';
+import {mask} from '../assets/images';
+import {colors} from '../components';
 import {CartProps} from '../types/types.d';
+import {wp} from './layout';
 
 export const ListData = [
   {

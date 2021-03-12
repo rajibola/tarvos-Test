@@ -1,6 +1,6 @@
 import {Platform, StyleSheet} from 'react-native';
-import {wp, hp, paddingTopiOS, getStatusBarHeight} from '../utils/layout';
-import colors from './colors';
+import {wp, hp, getStatusBarHeight} from '../utils/layout';
+import {colors} from './colors';
 
 export const ListStyles = StyleSheet.create({
   listText: {
