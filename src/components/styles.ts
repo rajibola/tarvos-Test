@@ -190,12 +190,10 @@ export const CardStyles = StyleSheet.create({
 
 export const HeaderStyles = StyleSheet.create({
   back: {
-    alignItems: 'center',
     flexDirection: 'row',
   },
   shoppingText: {
     fontSize: hp(16),
-    lineHeight: hp(21),
     textTransform: 'capitalize',
     marginLeft: wp(21),
   },
