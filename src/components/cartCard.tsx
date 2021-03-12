@@ -11,7 +11,7 @@ import {colors, MediumText, RegularText} from '.';
 export const CartCard: FC<CartProps> = ({...props}) => {
   const {name, amount, size, price, image, color, id, total} = props;
   const {dispatch, state} = useContext(AppContext);
-  const hitSlop = {top: 20, bottom: 20, left: 50, right: 50};
+  const hitSlop = {top: wp(14), bottom: wp(14), left: wp(14), right: wp(14)};
 
   const reduce = () => {
     dispatch({
